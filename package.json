@@ -12,6 +12,7 @@
   "license": "ISC",
   "description": "活着么 - 存在确认与状态同步应用",
   "dependencies": {
+    "@supabase/supabase-js": "^2.91.0",
     "bcrypt": "^6.0.0",
     "body-parser": "^2.2.2",
     "cors": "^2.8.5",
