@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>活着么 - 存在确认</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 登录/注册界面 -->
+    <div id="authSection" class="auth-section">
+      <div class="logo">
+        <h1 class="breath-animation">活着么</h1>
+        <p class="subtitle">每天签到，让关心你的人安心</p>
+      </div>
+
+      <!-- 登录表单 -->
+      <div id="loginForm" class="form-container">
+        <h2>登录</h2>
+        <form onsubmit="handleLogin(event)">
+          <div class="form-group">
+            <input type="email" id="loginEmail" placeholder="邮箱地址" required>
+          </div>
+          <div class="form-group">
+            <input type="password" id="loginPassword" placeholder="密码" required>
+          </div>
+          <button type="submit" class="btn btn-primary">登录</button>
+        </form>
+        <p class="switch-form">
+          还没有账号？<a href="#" onclick="showRegisterForm()">立即注册</a>
+        </p>
+      </div>
+
+      <!-- 注册表单 -->
+      <div id="registerForm" class="form-container" style="display: none;">
+        <h2>注册</h2>
+        <form onsubmit="handleRegister(event)">
+          <div class="form-group">
+            <input type="text" id="registerUsername" placeholder="用户名" required>
+          </div>
+          <div class="form-group">
+            <input type="email" id="registerEmail" placeholder="邮箱地址" required>
+          </div>
+          <div class="form-group">
+            <input type="tel" id="registerPhone" placeholder="手机号（可选）">
+          </div>
+          <div class="form-group">
+            <input type="password" id="registerPassword" placeholder="密码" required>
+          </div>
+          <div class="form-group">
+            <input type="password" id="registerPasswordConfirm" placeholder="确认密码" required>
+          </div>
+          <button type="submit" class="btn btn-primary">注册</button>
+        </form>
+        <p class="switch-form">
+          已有账号？<a href="#" onclick="showLoginForm()">立即登录</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- 提示信息 -->
+    <div id="toast" class="toast"></div>
+  </div>
+
+  <script src="/js/auth.js"></script>
+</body>
+</html>

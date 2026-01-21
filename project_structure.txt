@@ -1,0 +1,33 @@
+.
+├── ARCHITECTURE.md
+├── DELIVERY.md
+├── QUICKSTART.md
+├── README.md
+├── SCREENSHOTS.md
+├── STARTUP.md
+├── config
+│   └── email.js
+├── data.db
+├── package-lock.json
+├── package.json
+├── project_structure.txt
+├── public
+│   ├── assets
+│   ├── css
+│   │   └── style.css
+│   ├── dashboard.html
+│   ├── index.html
+│   └── js
+│       ├── auth.js
+│       └── dashboard.js
+├── screenshots
+│   └── login.webp
+└── server
+    ├── auth.js
+    ├── checkin.js
+    ├── contacts.js
+    ├── database.js
+    ├── index.js
+    └── notification.js
+
+7 directories, 23 files

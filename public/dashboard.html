@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>活着么 - 个人面板</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 导航栏 -->
+    <nav class="navbar">
+      <div class="nav-brand">活着么</div>
+      <div class="nav-menu">
+        <a href="#" onclick="showCheckinSection()">签到</a>
+        <a href="#" onclick="showContactsSection()">联系人</a>
+        <a href="#" onclick="showStatsSection()">统计</a>
+        <a href="#" onclick="handleLogout()">退出</a>
+      </div>
+    </nav>
+
+    <!-- 签到区域 -->
+    <div id="checkinSection" class="section">
+      <div class="card">
+        <h2 class="breath-animation">今天，你还好吗？</h2>
+        
+        <div id="checkinStatus" class="checkin-status"></div>
+
+        <div id="checkinForm" class="checkin-form">
+          <div class="status-selector">
+            <button class="status-btn" data-status="很好" onclick="selectStatus(this)">
+              <span class="emoji">😊</span>
+              <span>很好</span>
+            </button>
+            <button class="status-btn" data-status="还行" onclick="selectStatus(this)">
+              <span class="emoji">😌</span>
+              <span>还行</span>
+            </button>
+            <button class="status-btn" data-status="有点累" onclick="selectStatus(this)">
+              <span class="emoji">😔</span>
+              <span>有点累</span>
+            </button>
+            <button class="status-btn" data-status="需要联系" onclick="selectStatus(this)">
+              <span class="emoji">🆘</span>
+              <span>需要联系</span>
+            </button>
+          </div>
+
+          <div class="form-group">
+            <textarea id="checkinMessage" placeholder="今天想说点什么...（可选）" rows="3"></textarea>
+          </div>
+
+          <button class="btn btn-primary" onclick="handleCheckin()">签到</button>
+        </div>
+      </div>
+
+      <!-- 最近签到记录 -->
+      <div class="card">
+        <h3>最近 7 天签到记录</h3>
+        <div id="recentCheckins" class="recent-checkins"></div>
+      </div>
+    </div>
+
+    <!-- 联系人区域 -->
+    <div id="contactsSection" class="section" style="display: none;">
+      <div class="card">
+        <h2>我的联系人</h2>
+        <p class="subtitle">添加亲友，让他们在你未签到时收到提醒</p>
+
+        <form onsubmit="handleAddContact(event)" class="contact-form">
+          <div class="form-group">
+            <input type="text" id="contactName" placeholder="联系人姓名" required>
+          </div>
+          <div class="form-group">
+            <input type="email" id="contactEmail" placeholder="邮箱地址">
+          </div>
+          <div class="form-group">
+            <input type="tel" id="contactPhone" placeholder="手机号">
+          </div>
+          <button type="submit" class="btn btn-primary">添加联系人</button>
+        </form>
+
+        <div id="contactsList" class="contacts-list"></div>
+      </div>
+    </div>
+
+    <!-- 统计区域 -->
+    <div id="statsSection" class="section" style="display: none;">
+      <div class="card">
+        <h2>签到统计</h2>
+        
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-value" id="consecutiveDays">0</div>
+            <div class="stat-label">连续签到天数</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="totalCheckins">0</div>
+            <div class="stat-label">累计签到次数</div>
+          </div>
+        </div>
+
+        <canvas id="checkinChart" width="400" height="200"></canvas>
+      </div>
+    </div>
+
+    <!-- 提示信息 -->
+    <div id="toast" class="toast"></div>
+  </div>
+
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>
