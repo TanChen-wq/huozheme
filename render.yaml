@@ -10,9 +10,5 @@ services:
         value: production
       - key: JWT_SECRET
         generateValue: true
-      - key: DATABASE_PATH
-        value: /var/data/huozheme.db
-    disk:
-      name: huozheme-data
-      mountPath: /var/data
-      sizeGB: 1
+      - key: DATABASE_URL
+        sync: false # 用户需要在 Render 后台手动填入 Supabase 的连接字符串

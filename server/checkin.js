@@ -92,7 +92,7 @@ const getConsecutiveDays = async (userId) => {
       const nextDate = new Date(checkins[i + 1].checkin_date);
       
       const diffTime = currentDate - nextDate;
-      const diffDays = diffTime / (1000 * 60 * 60 * 24);
+      const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
 
       if (diffDays === 1) {
         consecutiveDays++;
@@ -138,12 +138,18 @@ const getCheckinStats = async (userId) => {
  */
 const getInactiveUsers = async () => {
   try {
-    const users = await dbAll(
-      `SELECT u.id, u.email, u.username, u.last_checkin 
-       FROM users u
-       WHERE u.last_checkin IS NULL 
-       OR datetime(u.last_checkin) < datetime('now', '-24 hours')`
-    );
+    // 兼容 SQLite 和 PostgreSQL 的查询
+    const sql = process.env.DATABASE_URL 
+      ? `SELECT u.id, u.email, u.username, u.last_checkin 
+         FROM users u
+         WHERE u.last_checkin IS NULL 
+         OR u.last_checkin < NOW() - INTERVAL '24 hours'`
+      : `SELECT u.id, u.email, u.username, u.last_checkin 
+         FROM users u
+         WHERE u.last_checkin IS NULL 
+         OR datetime(u.last_checkin) < datetime('now', '-24 hours')`;
+    
+    const users = await dbAll(sql);
     return users;
   } catch (error) {
     throw error;
